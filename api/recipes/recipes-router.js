@@ -15,4 +15,15 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/:id/shoppingList", (req, res) => {
+  const { id } = req.params;
+  Recipes.getShoppingList(id)
+    .then((list) => {
+      res.status(200).json(list);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 module.exports = router;
